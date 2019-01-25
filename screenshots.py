@@ -15,7 +15,7 @@ def timestamp():
     """
     current_time = datetime.now()
     ts = datetime.now().timestamp()
-    formatted_time_day = current_time.strftime('%m/%d/%Y')
+    formatted_time_day = current_time.strftime('%m:%d:%Y')
     # formatted_time_hour = current_time.strftime('%H:%M:%S.%f')
 
     return (formatted_time_day, ts)
@@ -23,8 +23,8 @@ def timestamp():
 
 def takeScreenshot(timing):
 
-    name = str(timing[0]) + "_" + str(timing[1]) + ".jpg"
-    im = pyscreeze.screenshot()
+    name = str(timing[0]) + "_" + str(timing[1]) + ".png"
+    im = pyscreeze.screenshot(name)
     return im
 
 
@@ -38,20 +38,18 @@ def getActiveApp(timing):
 def main():
     start = time.time()
     elapsed = time.time()
-    print(elapsed - start)
+    while elapsed - start < 100:
 
-    while elapsed - start < 10:
-        print(elapsed-start)
-        if elapsed - start > 1: 
-            print("if ", elapsed - start)
+        if elapsed - start > 10: 
+
             timing = timestamp()
-            takeScreenshot(timing)
+            # im = takeScreenshot(timing)
+            im = pyscreeze.screenshot(str(timing[1]) + ".png")
             getActiveApp(timing)
             start = elapsed
 
         else:
             elapsed = time.time()
-            print("else ", elapsed)
 
 
 if __name__ == "__main__":
