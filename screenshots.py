@@ -5,7 +5,7 @@ from datetime import datetime
 import csv
 import time
 
-apps_csv = open('apps.csv', mode='w')
+apps_csv = open('apps.csv', mode='a')
 apps_writer = csv.writer(apps_csv, delimiter = ',', quoting=csv.QUOTE_ALL)  
 apps_writer.writerow(["App Used", "Date", "UNIX Time"])
 
@@ -23,7 +23,7 @@ def timestamp():
 
 def takeScreenshot(timing):
 
-    name = str(timing[0]) + "_" + str(timing[1]) + ".png"
+    name = str(timing[1]) + ".png"
     im = pyscreeze.screenshot(name)
     return im
 
@@ -43,8 +43,8 @@ def main():
         if elapsed - start > 10: 
 
             timing = timestamp()
-            # im = takeScreenshot(timing)
-            im = pyscreeze.screenshot(str(timing[1]) + ".png")
+            im = takeScreenshot(timing)
+            # im = pyscreeze.screenshot(str(timing[1]) + ".png")
             getActiveApp(timing)
             start = elapsed
 

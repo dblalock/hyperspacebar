@@ -3,8 +3,8 @@ from datetime import datetime
 import csv
 
 
-keys_csv = open('keys.csv', mode='w')
-mouse_csv = open('mouse.csv', mode='w')
+keys_csv = open('keys.csv', mode='a')
+mouse_csv = open('mouse.csv', mode='a')
 keys_writer = csv.writer(keys_csv, delimiter = ',', quoting=csv.QUOTE_ALL)  
 keys_writer.writerow(["Key Pressed", "Date", "UNIX Time"])
 
